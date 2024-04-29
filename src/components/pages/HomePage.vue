@@ -13,9 +13,11 @@
 
 <script>
   import RecipeList from '../recipe/RecipeList.vue'
+  import RECIPE_DATA from '../../recipe.js'
   export default {
     components: {
       RecipeList
     }
   }
+  const recipeList = RECIPE_DATA;
 </script>

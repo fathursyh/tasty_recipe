@@ -1,23 +1,12 @@
 <template>
   <div class="recipe__list-recipe-row">
     <div class="row flex-row">
-      <recipe-card></recipe-card>
-      <recipe-card></recipe-card>
-      <recipe-card></recipe-card>
-      <recipe-card></recipe-card>
-      <recipe-card></recipe-card>
-      <recipe-card></recipe-card>
-      <recipe-card></recipe-card>
-      <recipe-card></recipe-card>
+      <recipe-card :recipes="recipeList"></recipe-card>
     </div>
   </div>
 </template>
 
-<script>
-  import RecipeCard from './RecipeCard.vue'
-  export default {
-    components: {
-      RecipeCard
-    }
-  }
+<script setup>
+  import RecipeCard from "./RecipeCard.vue";
+ 
 </script>

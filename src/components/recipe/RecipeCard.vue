@@ -7,9 +7,9 @@
         <div class="card-body" style="color: #0a0a0a">
           <p class="mb-0">Dinner</p>
           <div class="h-50">
-            <h4 class="fs-5 mb-0">Beef Wellington</h4>
+            <h4 class="fs-5 mb-0"></h4>
           </div>
-          <p>Recipe By Gordon Ramsay</p>
+          <p></p>
         </div>
       </div>
       <div class="position-absolute text-secondary bg-light px-2 py-1 rounded-circle top-0 end-0 m-4 like-icon">
@@ -17,3 +17,9 @@
       </div>
     </div>
 </template>
+
+<script setup>
+   defineProps({
+    recipes: Array
+  })
+</script>
