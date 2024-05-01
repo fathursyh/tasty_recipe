@@ -1,5 +1,5 @@
 <template>
-  <div class="header__navbar row justify-content-center align-items-center " style="width: 450px;">
+  <div class="header__navbar row justify-content-center align-items-center" style="width: 450px;">
     <search-menu></search-menu>
     <signup-menu></signup-menu>
   </div>

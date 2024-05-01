@@ -1,9 +1,7 @@
 <template>
   <div>
     <web-header></web-header>
-    <router-view>
-      <home-page></home-page>
-    </router-view>
+    <router-view></router-view>
     <web-footer></web-footer>
   </div>
 </template>
