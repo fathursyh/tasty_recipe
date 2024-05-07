@@ -7,12 +7,30 @@
         cooks, videos, and how-tos based on the food you love and the friends you follow.
       </p>
     </div>
-    <recipe-list :recipes="recipeList"></recipe-list>
+    <recipe-list :recipes="recipeList" v-if="recipeListStatus"></recipe-list>
   </div>
 </template>
 
 <script setup>
-  import RecipeList from '../recipe/RecipeList.vue'
-  import RECIPE_DATA from '../../recipe.json';
-  const recipeList = RECIPE_DATA;
+  // import RecipeList from '../recipe/RecipeList.vue'
+  // import RECIPE_DATA from '../../recipe.json';
+  // const recipeList = RECIPE_DATA;
+
+  import RecipeList from '../recipe/RecipeList.vue';
+  import { onMounted, ref } from 'vue';
+  import { useStore } from 'vuex';
+
+  const store = useStore();
+  const recipeListStatus = ref(false);
+  const recipeList = ref();
+
+  onMounted(async () => {
+    try {
+      await store.dispatch('recipe/getRecipeData');
+      recipeListStatus.value = true;
+      recipeList.value = store.state.recipe.recipes;
+    } catch (err) {
+      console.log(err)
+    }
+  });
 </script>

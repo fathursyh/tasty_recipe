@@ -23,11 +23,6 @@
             <p>Recipe By {{ item.username }}</p>
           </div>
         </div>
-        <div
-          class="position-absolute text-secondary bg-light px-2 py-1 rounded-circle top-0 end-0 m-4 like-icon"
-        >
-          <i class="fas fa-heart"></i>
-        </div>
       </div>
     </div>
   </div>

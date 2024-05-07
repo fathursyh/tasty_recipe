@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 
 
 import { createApp } from 'vue';
+import {store} from './store/index';
 import { createRouter, createWebHistory } from 'vue-router';
 import { routes } from './routes';
 import App from './App.vue';
@@ -15,5 +16,5 @@ const router = createRouter({
   }
 })
 
-createApp(App).use(router).mount('#app');
+createApp(App).use(router).use(store).mount('#app');
 import 'bootstrap/dist/js/bootstrap.js';

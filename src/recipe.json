@@ -61,5 +61,31 @@
     "imageLink":
       "https://www.dinnerwithjulie.com/wp-content/uploads/2015/02/Screen-shot-2015-02-08-at-11.28.46-PM.png",
     "username": "fathur"
+  },
+  {
+    "id": 6,
+    "category": "Lunch",
+    "cookTime": 15,
+    "prepTime": 15,
+    "totalTime": 30,
+    "name": "Old-Fashion Potato Salad",
+    "description":
+      "This potato salad recipe is for the traditional creamy type of potato salad, with eggs, celery, and relish. It's perfect for making ahead to let the flavors develop.",
+    "imageLink":
+      "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2011/6/3/1/FNM_070111-Insert-002_s4x3.jpg.rend.hgtvcom.616.462.suffix/1371597728929.jpeg",
+    "username": "renatamoloek"
+  }, 
+  {
+    "id": 7,
+    "category": "Lunch",
+    "cookTime": 15,
+    "prepTime": 15,
+    "totalTime": 30,
+    "name": "Old-Fashion Potato Salad",
+    "description":
+      "This potato salad recipe is for the traditional creamy type of potato salad, with eggs, celery, and relish. It's perfect for making ahead to let the flavors develop.",
+    "imageLink":
+      "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2011/6/3/1/FNM_070111-Insert-002_s4x3.jpg.rend.hgtvcom.616.462.suffix/1371597728929.jpeg",
+    "username": "renatamoloek"
   }
 ]
