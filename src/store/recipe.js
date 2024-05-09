@@ -17,7 +17,7 @@ export default {
     async getRecipeData({commit}) {
       try {
         const {data} = await axios.get(
-          'https://recipe-vue-batch2-default-rtdb.firebaseio.com/recipes.json'
+          'https://tasty-recipe-e679a-default-rtdb.firebaseio.com/recipe.json'
         )
 
         const arr = [];
