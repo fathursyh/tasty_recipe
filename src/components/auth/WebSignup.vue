@@ -46,26 +46,35 @@
               type="password"
               id="password"
               placeholder="Your password"
-              label="Password">
+              label="Password"
+              v-model="signupData.password" @keyInput="passwordCheck">
             </base-input>
+            <p class="text-danger mt-1 fw-medium" style="font-size: 11px" :style="{display: passwordStatusDisplay}">
+              The password field must be at least 8 characters
+            </p>
         </div>
         <div class="my-4">
           <base-input
               type="password"
               id="confrimPassword"
               placeholder="Re-type Password"
-              label="Confirm Password">
+              label="Confirm Password"
+              v-model="signupData.confirmationPassword"
+              @keyInput="confirmationPasswordCheck">
             </base-input>
+            <p class="text-danger mt-1 fw-medium" style="font-size: 11px;" :style="{display: confirmationPasswordDoesNotMatch}">
+            The confirmation password does not match</p>
         </div>
         <div class="my-4">
           <base-input
               type="file"
               id="recipeImage"
               label="Profile photo"
-              isImage>
+              isImage
+              @input="checkImage">
               <div style="cursor: pointer;">
                 <div class="border p-1 mt-2 rounded-circle">
-                  <img src="../../assets/images/Logo.png" class="rounded-circle" width="140" height="150" style="object-fit: cover;" alt="">
+                  <img :src="signupData.imageLink" class="rounded-circle" width="140" height="150" style="object-fit: cover;" alt="">
                 </div>
                 <div class="text-center" style="transform: translateY(-16px);">
                     <i class="p-2 rounded-circle bg-white"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-camera-fill" viewBox="0 0 16 16">
@@ -94,4 +103,51 @@
 <script setup>
   import BaseButton from '../ui/BaseButton.vue'
   import BaseInput from '../ui/BaseInput.vue';
+  import { reactive, ref } from 'vue';
+
+  const passwordStatusDisplay = ref('none');
+  const confirmationPasswordDoesNotMatch = ref('none');
+
+  const passwordCheck = () => {
+    if (signupData.password.length < 8) {
+      passwordStatusDisplay.value = "block";
+    } else {
+      passwordStatusDisplay.value = "none";
+    }
+  }
+
+  const confirmationPasswordCheck = () => {
+    if(signupData.confirmationPassword === "") {
+      confirmationPasswordDoesNotMatch.value = "none";
+      return;
+    }
+    if (signupData.password !== signupData.confirmationPassword) {
+      confirmationPasswordDoesNotMatch.value = "block";
+      return;
+    }
+
+    confirmationPasswordDoesNotMatch.value = "none";
+  }
+
+  const checkImage = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.addEventListener("load", () => {
+      signupData.imageLink = reader.result;
+    });
+  }
+
+  const signupData = reactive({
+    firstname: "",
+    lastname: "",
+    username: "",
+    email: "",
+    password: "",
+    confirmationPassword: "",
+    isLogin: false,
+    imageLink: "",
+  })
+
 </script>

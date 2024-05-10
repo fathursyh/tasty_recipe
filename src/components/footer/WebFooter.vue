@@ -11,7 +11,7 @@
             <i class="fa-brands fa-square-instagram pe-3"></i>
             <i class="fa-brands fa-youtube"></i>
           </div>
-          <p class="d-none d-sm-block">ⓒ2022 Tasty Recipe, Inc</p>
+          <p class="d-none d-sm-block">ⓒ{{ year }} Made by ♥ by Fathur Syah</p>
         </div>
         <div class="col-md-5 col-sm-1 col-12"></div>
         <div class="col-md-4 col-sm-6 col-12">
@@ -26,8 +26,14 @@
             Sign Up
           </button>
         </div>
-        <p class="d-block d-sm-none pt-5 mb-0">ⓒ2022 Tasty Recipe, Inc</p>
+        <p class="d-block d-sm-none pt-5 mb-0">ⓒ{{ year }} Made by ♥ by Fathur Syah</p>
       </div>
     </div>
   </footer>
 </template>
+
+<script setup>
+import { ref } from 'vue';
+  const date = new Date();
+  const year = ref(date.getFullYear());
+</script>
