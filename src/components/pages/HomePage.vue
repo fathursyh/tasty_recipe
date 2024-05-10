@@ -7,9 +7,7 @@
         cooks, videos, and how-tos based on the food you love and the friends you follow.
       </p>
     </div>
-    <router-link to="/recipe/" class="text-decoration-none">
       <recipe-list :recipes="recipeList" v-if="recipeListStatus"></recipe-list>
-    </router-link>
   </div>
 </template>
 

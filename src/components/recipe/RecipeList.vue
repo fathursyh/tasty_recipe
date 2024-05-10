@@ -1,4 +1,4 @@
-<template >
+<template>
   <div class="recipe__list-recipe-row">
     <div class="row flex-row">
       <div
@@ -6,6 +6,7 @@
         style="padding-top: 12px; padding-bottom: 12px"
         v-for="(item) in recipes" :key="item"
       >
+      <router-link :to="/recipe/ + item.id" class="text-decoration-none">
         <div class="card text-decoration-none" style="height: 398px">
           <img
             v-bind:src=item.imageLink
@@ -23,6 +24,8 @@
             <p>Recipe By {{ item.username }}</p>
           </div>
         </div>
+      </router-link>
+    
       </div>
     </div>
   </div>

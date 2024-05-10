@@ -5,12 +5,16 @@ export default {
   state() {
     return {
       recipes: [],
+      recipeDetail: {},
     }
   },
   getters: {},
   mutations: {
     setRecipeData(state, payload) {
       state.recipes = payload
+    },
+    setRecipeDetail(state, payload) {
+      state.recipeDetail = payload
     }
   },
   actions: {
@@ -29,6 +33,16 @@ export default {
       } catch (err) {
         console.log(err);
       }
+    },
+    async getRecipeDetail({commit}, payload) {
+      try {
+        const {data} = await axios.get(
+          `https://tasty-recipe-e679a-default-rtdb.firebaseio.com/recipe/${payload-1}.json`
+        );
+        commit('setRecipeDetail', data);
+      } catch (err) {
+        console.log(err);
+      }
     }
-  },
+  }
 }
