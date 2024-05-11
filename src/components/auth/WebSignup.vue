@@ -6,14 +6,15 @@
         <h2 class="mt-4">Create your account</h2>
         <p>Enter your details to use all the app features.</p>
       </div>
-      <form class="mt-3">
+      <form class="mt-3" @submit.prevent="register">
         <div class="row">
           <div class="col-md-6">
             <base-input
               type="text"
               id="firstName"
               placeholder="Ex : Michael"
-              label="First Name">
+              label="First Name"
+              v-model="signupData.firstname">
             </base-input>
           </div>
           <div class="col-md-6">
@@ -21,7 +22,8 @@
               type="text"
               id="lastName"
               placeholder="Ex : Scott"
-              label="Last Name">
+              label="Last Name"
+              v-model="signupData.lastname">
             </base-input>
           </div>
         </div>
@@ -29,16 +31,20 @@
           <base-input
               type="text"
               id="username"
+              name="username"
               placeholder="Your username"
-              label="Username">
+              label="Username"
+              v-model="signupData.username">
             </base-input>
         </div>
         <div class="my-4">
           <base-input
               type="text"
+              name="email"
               id="email"
               placeholder="Your email address"
-              label="Email Address">
+              label="Email Address"
+              v-model="signupData.email">
             </base-input>
         </div>
         <div class="my-4">
@@ -56,7 +62,7 @@
         <div class="my-4">
           <base-input
               type="password"
-              id="confrimPassword"
+              id="confirmPassword"
               placeholder="Re-type Password"
               label="Confirm Password"
               v-model="signupData.confirmationPassword"
@@ -101,9 +107,11 @@
 </template>
 
 <script setup>
+  import { useStore } from 'vuex';
   import BaseButton from '../ui/BaseButton.vue'
   import BaseInput from '../ui/BaseInput.vue';
   import { reactive, ref } from 'vue';
+  import { useRouter } from 'vue-router';
 
   const passwordStatusDisplay = ref('none');
   const confirmationPasswordDoesNotMatch = ref('none');
@@ -149,5 +157,21 @@
     isLogin: false,
     imageLink: "",
   })
+
+  const store = useStore()
+  const router = useRouter()
+  const register = async() => {
+    if(
+      signupData.password !== signupData.confirmationPassword ||
+      signupData.password.length < 8
+    ) {
+      signupData.confirmationPassword = "";
+      signupData.password = "";
+      confirmationPasswordDoesNotMatch.value = 'none';
+    } else {
+      await store.dispatch('auth/getRegisterData', signupData);
+      router.push('/');
+    }
+  };
 
 </script>
