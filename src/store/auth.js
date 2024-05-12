@@ -8,6 +8,7 @@ export default {
             tokenExpirationDate: null,
             userLogin: {},
             isLogin: false,
+            username: null
         };
     },
     mutations: {
@@ -20,6 +21,7 @@ export default {
         setUserLogin(state, {userData, loginStatus}) {
             state.userLogin = userData,
             state.isLogin = true;
+            state.username = userData.username
         },
         setUserLogout(state) {
             state.token = null;

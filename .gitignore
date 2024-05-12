@@ -13,7 +13,7 @@ dist
 dist-ssr
 coverage
 *.local
-src/store/auth
+*auth
 
 /cypress/videos/
 /cypress/screenshots/

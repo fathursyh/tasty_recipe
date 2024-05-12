@@ -37,7 +37,6 @@
       menuComponent.value = 'login-menu';
     } else {
       menuComponent.value = 'profile-menu';
-      console.log('login')
     }
   });
 

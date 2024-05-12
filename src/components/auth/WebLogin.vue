@@ -38,8 +38,8 @@
   import { reactive } from 'vue';
   import BaseButton from '../ui/BaseButton.vue'
   import BaseInput from "../ui/BaseInput.vue";
-import { useStore } from 'vuex';
-import { useRouter } from 'vue-router';
+  import { useStore } from 'vuex';
+  import { useRouter } from 'vue-router';
 
   const loginData = reactive({
     email: '',
@@ -53,7 +53,6 @@ import { useRouter } from 'vue-router';
   const login = async () => {
     await store.dispatch('auth/getLoginData', loginData);
     router.push('/');
-    // console.log(store.state.auth);
   };
 
 </script>
