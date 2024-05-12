@@ -41,11 +41,11 @@ import { useRouter } from 'vue-router';
   };
   
   const pindah = (url) => {
-    console.log('pindah');
     router.push({name: url});
   };
 
   const username = computed(()=>{
     return store.state.auth.username;
   })
+
 </script>
