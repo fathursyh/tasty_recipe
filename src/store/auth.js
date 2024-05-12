@@ -19,7 +19,17 @@ export default {
         },
         setUserLogin(state, {userData, loginStatus}) {
             state.userLogin = userData,
-            state.isLogin = loginStatus
+            state.isLogin = true;
+        },
+        setUserLogout(state) {
+            state.token = null;
+            state.userLogin = {};
+            state.isLogin = false;
+            state.tokenExpirationDate = null;
+            Cookies.remove('jwt');
+            Cookies.remove('tokenExpirationDate');
+            Cookies.remove('UID');
+
         }
     },
     actions: {
@@ -35,7 +45,7 @@ export default {
             );
                 commit('setToken', {
                     idToken: data.idToken,
-                    expiresIn: new Date().getTime() + Number.parseInt(data.expiresIn) * 1000
+                    expiresIn: new Date().getTime() + Number.parseInt(data.expiresIn) * 8000
                 })
                 const newUserData = {
                     userId: data.localId,
@@ -60,6 +70,42 @@ export default {
             
                 commit('setUserLogin', {userData: payload, loginStatus: true});
             } catch (err) {
+                console.log(err);
+            }
+        },
+
+        // LOGIN
+        async getLoginData({commit, dispatch}, payload) {
+            const APIkey = 'AIzaSyAb0nCT2J-awDcSVla5tRwRLjMU8HY9fIY';
+            const authURL = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=';
+
+            try {
+                const {data} = await axios.post(authURL + APIkey, {
+                    email: payload.email, password: payload.password, returnSecureToken: true,
+                })
+                commit('setToken', {
+                    idToken: data.idToken,
+                    expiresIn: new Date().getTime() + Number.parseInt(data.expiresIn) * 8000
+                });
+                await dispatch('getUser', data.localId)
+            } catch (err) {
+                console.log(err);
+            }
+
+        },
+        async getUser({commit}, payload) {
+            try {
+                const {data} = await axios.get('https://tasty-recipe-e679a-default-rtdb.firebaseio.com/user.json');
+                for (let key in data) {
+                    if (data[key].userId === payload) {
+                        Cookies.set('UID', data[key].userId);
+                        commit('setUserLogin', {
+                            userData: data[key], loginStatus: true
+                        })
+                    }
+                }
+            }
+            catch (err) {
                 console.log(err);
             }
         }
