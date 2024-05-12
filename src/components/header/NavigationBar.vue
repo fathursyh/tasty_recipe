@@ -11,32 +11,34 @@
   import { ref, computed, watch } from "vue";
   import { useStore } from "vuex";
   import SearchMenu from "./SearchMenu.vue";
-  import SignupMenu from "./SignupMenu.vue";
-  import ProfileMenu from './ProfileMenu.vue'
+  import LoginMenu from "./LoginMenu.vue";
+  import ProfileMenu from "./ProfileMenu.vue";
 
   const menuComponent = ref("signup-menu");
   const store = useStore();
 
   const components = {
-    "signup-menu": SignupMenu,
+    "login-menu": LoginMenu,
     "profile-menu": ProfileMenu,
   };
 
   const getToken = computed(()=>{
-    return store.state.auth.token;
+    return store.state.auth.isLogin;
   });
 
   if(!getToken.value) {
-    menuComponent.value = 'signup-menu';
+    menuComponent.value = 'login-menu';
   } else {
     menuComponent.value = 'profile-menu';
   }
 
-  watch(getToken, (newValue, oldValue)=>{
-    if(!newValue.value) {
-      menuComponent.value = 'signup-menu';
+  watch(getToken, (newGetToken, oldGetToken)=>{
+    if(!newGetToken) {
+      menuComponent.value = 'login-menu';
     } else {
       menuComponent.value = 'profile-menu';
+      console.log('login')
     }
   });
+
 </script>
