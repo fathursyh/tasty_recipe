@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "agentkeepalive": "^4.5.0",
     "axios": "^1.6.8",
     "bootstrap": "^5.2.3",
     "js-cookie": "^3.0.5",

@@ -17,14 +17,14 @@
           </div>
         </div>
       </li>
-      <li class="list-group-item user-menu">
-        <i class="fa-solid fa-user pe-2"></i>Personal Info
+      <li class="list-group-item user-menu" @click="menuClicked('personal-info')">
+        Personal Info
       </li>
-      <li class="list-group-item user-menu">
-        <i class="fas fa-heart pe-2"></i>Favorited Recipes
+      <li class="list-group-item user-menu" @click="menuClicked('favorite-recipes')">
+        Favorited Recipes
       </li>
-      <li class="list-group-item user-menu">
-        <i class="fa-solid fa-burger pe-2"></i>My Recipe
+      <li class="list-group-item user-menu" @click="menuClicked('user-recipe')">
+        My Recipe
       </li>
     </ul>
   </div>
@@ -43,3 +43,11 @@
   color: #404040;
 }
 </style>
+
+<script setup>
+  const emit = defineEmits(['changeComponent']);
+
+  const menuClicked = (option) => {
+    emit('changeComponent', option)
+  }
+</script>
