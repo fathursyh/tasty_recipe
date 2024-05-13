@@ -1,5 +1,5 @@
 <template>
-    <div class="my-2 p-4 d-flex flex-column-reverse flex-lg-row justify-content-between border border-secondary-sublet rounded">
+    <div class="my-2 p-4 d-flex flex-column-reverse flex-lg-row justify-content-between border border-secondary-sublet rounded" style="background-color: #fff;">
       <div class="pe-lg-4">
         <h2>{{ recipe.name }}</h2>
         <p>

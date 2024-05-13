@@ -32,6 +32,7 @@
 </template>
 
 <script setup>
+
   defineProps({
     recipes: Array
   })

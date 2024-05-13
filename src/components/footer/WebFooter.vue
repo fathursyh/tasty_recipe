@@ -15,8 +15,8 @@
         </div>
         <div class="col-md-5 col-sm-1 col-12"></div>
         <div class="col-md-4 col-sm-6 col-12">
-          <p class="fw-semibold fs-5 mb-3">Get Tasty Recipe News Later</p>
-          <p class="mb-1">Email Address <span class="text-danger">*</span></p>
+          <p class="fw-semibold fs-5 mb-3 text-dark">Get Tasty Recipe News Later</p>
+          <p class="mb-1 text-dark">Email Address <span class="text-danger">*</span></p>
           <input
             type="text"
             class="form-control"

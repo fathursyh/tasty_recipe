@@ -3,6 +3,11 @@ body {
   font-family: "Inter", sans-serif;
 }
 
+#mainBody {
+  background: linear-gradient(0deg, rgb(191, 244, 186) 18%, rgba(255,255,255,1) 60%);
+
+}
+
 :root {
   --base-color: #4c4ddc;
 }

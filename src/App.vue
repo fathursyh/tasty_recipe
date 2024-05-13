@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="mainBody">
     <web-header></web-header>
     <router-view></router-view>
     <web-footer></web-footer>

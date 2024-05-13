@@ -12,9 +12,6 @@
 </template>
 
 <script setup>
-  // import RecipeList from '../recipe/RecipeList.vue'
-  // import RECIPE_DATA from '../../recipe.json';
-  // const recipeList = RECIPE_DATA;
 
   import RecipeList from '../recipe/RecipeList.vue';
   import { onMounted, ref } from 'vue';
