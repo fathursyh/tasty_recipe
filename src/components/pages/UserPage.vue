@@ -14,12 +14,13 @@
   import FavoriteRecipe from '../user/FavoriteRecipe.vue'
   import PersonalInfo from '../user/PersonalInfo.vue'
   import UserRecipe from '../user/UserRecipe.vue'
-import { useRoute } from 'vue-router'
+  import { useRoute } from 'vue-router'
+  import { computed } from 'vue'
 
   const route = useRoute();
   const component = {
     'personal-info': PersonalInfo,
-    'favorite-recipe': FavoriteRecipe,
+    'favorite-recipes': FavoriteRecipe,
     'user-recipe': UserRecipe
   }
 

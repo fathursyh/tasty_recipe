@@ -16,10 +16,10 @@
         </a>
         <ul class="dropdown-menu">
           <router-link class="dropdown-item" to="/user/personal-info">My Profile</router-link>
-          <router-link class="dropdown-item">Favorited Recipes</router-link>
-          <router-link class="dropdown-item">My Recipes</router-link>
-          <router-link><hr class="dropdown-divider" /></router-link>
-          <router-link class="dropdown-item" @click.prevent="logout">Logout</router-link>
+          <router-link class="dropdown-item" to="/user/favorite-recipes">Favorited Recipes</router-link>
+          <router-link class="dropdown-item" to="/user/user-recipe/">My Recipes</router-link>
+          <hr class="dropdown-divider"/>
+          <li class="dropdown-item" @click.prevent="logout">Logout</li>
         </ul>
       </li>
     </ul>

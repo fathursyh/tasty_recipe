@@ -47,7 +47,7 @@
 <script setup>
   const emit = defineEmits(['changeComponent']);
 
-  const menuClicked = (option) => {
+  const menuClicked = option => {
     emit('changeComponent', option)
   }
 </script>
