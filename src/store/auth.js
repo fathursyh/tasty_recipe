@@ -8,7 +8,6 @@ export default {
             tokenExpirationDate: null,
             userLogin: {},
             isLogin: false,
-            username: null
         };
     },
     mutations: {
@@ -21,7 +20,6 @@ export default {
         setUserLogin(state, {userData, loginStatus}) {
             state.userLogin = userData,
             state.isLogin = true;
-            state.username = userData.username
         },
         setUserLogout(state) {
             state.token = null;
@@ -35,6 +33,7 @@ export default {
         }
     },
     actions: {
+
         async getRegisterData({commit, dispatch}, payload) {
             const APIkey = 'AIzaSyAb0nCT2J-awDcSVla5tRwRLjMU8HY9fIY';
             const authURL = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=';

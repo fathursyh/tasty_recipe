@@ -12,7 +12,7 @@
           role="button"
           data-bs-toggle="dropdown"
         >
-          {{ username }}
+          {{ userData.username }}
         </a>
         <ul class="dropdown-menu">
           <router-link class="dropdown-item" to="/user/personal-info">My Profile</router-link>
@@ -28,7 +28,7 @@
 
 <script setup>
   import { computed } from 'vue';
-import { useRouter } from 'vue-router';
+  import { useRouter } from 'vue-router';
   import { useStore } from 'vuex';
 
 
@@ -40,12 +40,8 @@ import { useRouter } from 'vue-router';
     router.push('/');
   };
   
-  const pindah = (url) => {
-    router.push({name: url});
-  };
-
-  const username = computed(()=>{
-    return store.state.auth.username;
+  const userData = computed(()=>{
+    return store.state.auth.userLogin;
   })
 
 </script>

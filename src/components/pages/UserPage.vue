@@ -28,4 +28,5 @@
     return route.params.component
   });
   
+  
 </script>
