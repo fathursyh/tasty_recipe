@@ -10,6 +10,7 @@
                 type="file"
                 id="recipeImage"
                 label="Photo Recipe"
+                @input="checkImage"
                 ></base-input> </div>
             <!-- Image End -->
   
@@ -19,6 +20,7 @@
                 id="recipeTitle"
                 placeholder="Give your recipe a title"
                 label="Recipe Title"
+                v-model="recipeData.name"
                 ></base-input> </div>
             <!-- Recipe Title  End -->
   
@@ -27,6 +29,7 @@
                 id="recipeDescription"
                 label="Description"
                 placeholder="Share story behind recipe"
+                v-model="recipeData.description"
                 ></base-text-area> </div>
             <!-- Recipe Description End -->
   
@@ -34,6 +37,7 @@
             <div class="mb-3"> <base-select
                 :data="['Breakfast', 'Lunch', 'Dinner', 'Meals', 'Snacks']"
                 id="recipeCateogry"
+                v-model="recipeData.category"
                 ></base-select> </div>
             <!-- Recipe Category End -->
           </div>
@@ -50,6 +54,7 @@
                 id="prepTime"
                 placeholder="0"
                 label="Prep Time"
+                v-model="recipeData.prepTime"
                 ></base-input> </div>
             <!-- Preparation Time End -->
   
@@ -59,6 +64,7 @@
                 id="cookTime"
                 placeholder="0"
                 label="Cook Time"
+                v-model="recipeData.cookTime"
                 ></base-input> </div>
             <!-- Cook Time End -->
             
@@ -68,6 +74,7 @@
                 id="totalTime"
                 placeholder="0"
                 label="Total Time"
+                v-model="recipeData.totalTime"
                 ></base-input> </div>
             <!-- Total Time End -->
           </div>
@@ -84,13 +91,14 @@
             recipe (i.e. Cake, Frosting, Dressing).
           </p>
           <div>
-            <div class="mb-3 row">
+            <div class="mb-3 row" v-for="count in ingredientCount" :key="count">
               <!-- Ingredient Input Start -->
               <div class="col-lg-11 col-11"> <base-input
                 type="text"
                 id="ingredient"
                 label="Ingredients"
                 placeholder="Ex: 1 cup of sugar"
+                v-model="recipeData.ingredients[count-1]"
                 ></base-input> </div>
               <!-- Ingredient Input End -->
               <div
@@ -106,6 +114,7 @@
           <base-button
             class="new-ingredient-btn px-3 py-2"
             type="button"
+            @clickButton="addIngredient"
           >Add More</base-button>
           <!-- Add More Button Start -->
         </div>
@@ -120,13 +129,14 @@
             the different parts of the recipe
           </p>
           <div>
-            <div class="mb-3 row">
+            <div class="mb-3 row" v-for="count in directionCount" :key="count">
               <!-- Direction Input Start -->
               <div class="col-lg-11 col-11"> <base-input
                     type="text"
                     id="direction"
                     label="Directions"
                     placeholder="Ex: Heat a pan at 100 degrees"
+                    v-model="recipeData.directions[count-1]"
                 ></base-input> </div>
                <!-- Direction Input End -->
               <div
@@ -142,6 +152,7 @@
           <base-button
             class="new-ingredient-btn px-3 py-2"
             type="button"
+            @clickButton="addDirection"
           >Add More</base-button>
           <!-- Add More Button End -->
         </div>
@@ -171,6 +182,28 @@ import BaseTextArea from '../ui/BaseTextArea.vue'
 import BaseSelect from '../ui/BaseSelect.vue'
 import BaseInput from '../ui/BaseInput.vue'
 import BaseButton from '../ui/BaseButton.vue'
+import { reactive, ref } from 'vue';
     
+const recipeData = reactive({
+  imageLink: '',
+  name: '',
+  description: '',
+  category: '',
+  prepTime: '',
+  cookTime: '',
+  totalTime: '',
+  ingredients: [],
+  directions: [],
+})
 
+const ingredientCount = ref(1);
+const directionCount = ref(1);
+
+const addIngredient = () => {
+  ingredientCount.value++;
+};
+
+const addDirection = () => {
+  directionCount.value++;
+};
 </script>
