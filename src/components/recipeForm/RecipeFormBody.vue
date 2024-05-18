@@ -1,6 +1,6 @@
 <template>
     <li class="list-group-item">
-      <form>
+      <form @submit.prevent="addNewRecipe">
         <!-- General Information Start -->
         <div>
           <p class="my-3 fs-5 fw-semibold">General Information</p>
@@ -75,6 +75,7 @@
                 placeholder="0"
                 label="Total Time"
                 v-model="recipeData.totalTime"
+                @totalTimeFocus="totalTime" readonly
                 ></base-input> </div>
             <!-- Total Time End -->
           </div>
@@ -103,10 +104,11 @@
               <!-- Ingredient Input End -->
               <div
                 class="col-lg-1 col-1 col-form-label align-self-end delete-ingredient"
-                style="color: #cb3a31"
+                style="color: #cb3a31;"
+                v-if="ingredientCount > 1" @click="removeIngredient(count-1)"
               >
                 <i class="fa-regular fa-trash-can px-1"></i
-                ><span class="d-none d-md-inline">Delete</span>
+                ><span class="d-none d-md-inline" style="cursor: pointer;">Delete</span>
               </div>
             </div>
           </div>
@@ -141,10 +143,11 @@
                <!-- Direction Input End -->
               <div
                 class="col-lg-1 col-1 col-form-label align-self-end delete-ingredient"
-                style="color: #cb3a31"
+                style="color: #cb3a31;"
+                v-if="directionCount > 1" @click="removeDirection(count-1)"
               >
                 <i class="fa-regular fa-trash-can px-1"></i
-                ><span class="d-none d-md-inline">Delete</span>
+                ><span class="d-none d-md-inline" style="cursor: pointer;">Delete</span>
               </div>
             </div>
           </div>
@@ -183,6 +186,8 @@ import BaseSelect from '../ui/BaseSelect.vue'
 import BaseInput from '../ui/BaseInput.vue'
 import BaseButton from '../ui/BaseButton.vue'
 import { reactive, ref } from 'vue';
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
     
 const recipeData = reactive({
   imageLink: '',
@@ -206,4 +211,34 @@ const addIngredient = () => {
 const addDirection = () => {
   directionCount.value++;
 };
+
+const removeIngredient = (index) => {
+  recipeData.ingredients.splice(index, 1);
+  directionCount.value--;
+};
+const removeDirection = (index) => {
+  recipeData.directions.splice(index, 1);
+  directionCount.value--;
+};
+
+const totalTime = () => {
+  recipeData.totalTime = parseInt(recipeData.prepTime) + parseInt(recipeData.cookTime);
+};
+
+const checkImage = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.addEventListener("load", () => {
+      recipeData.imageLink = reader.result;
+    });
+  }
+
+  const store = useStore();
+  const router = useRouter();
+  const addNewRecipe = async () => {
+    await store.dispatch('recipe/addNewRecipe', recipeData);
+    router.push('/user/user-recipe');
+  };
 </script>

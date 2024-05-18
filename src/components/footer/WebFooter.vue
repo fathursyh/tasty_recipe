@@ -23,7 +23,9 @@
             placeholder="Your email address"
           />
           <button type="button" class="btn btn-signup rounded-pill mt-4">
-            Sign Up
+            <router-link to="/new-recipe">
+              Sign Up
+            </router-link>
           </button>
         </div>
         <p class="d-block d-sm-none pt-5 mb-0">ⓒ{{ year }} Made by ♥ by Fathur Syah</p>

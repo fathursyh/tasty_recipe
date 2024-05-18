@@ -5,7 +5,9 @@
             {{ label }} <span style="color:#cb3a31">*</span>
             <slot></slot>
         </label>
-        <input :class="[{'d-none': isImage}, 'form-control']" :type="type" :id="id" :placeholder="placeholder" :readonly="readonly === '1'" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" @keyup="$emit('keyInput', $event.target.value)" />
+        <input :class="[{'d-none': isImage}, 'form-control']" :type="type" :id="id" :placeholder="placeholder" :readonly="readonly === '1'" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" @keyup="$emit('keyInput', $event.target.value)" 
+        @focus="$emit('totalTimeFocus', $event.target.value)"
+        />
     </div>
 </template>
 

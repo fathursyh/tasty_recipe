@@ -16,7 +16,10 @@ export default {
     },
     setRecipeDetail(state, payload) {
       state.recipeDetail = payload
-    }
+    },
+    setNewRecipe(state, payload) {
+      state.recipes.push(payload);
+    },
   },
   actions: {
     async getRecipeData({commit}) {
@@ -55,6 +58,22 @@ export default {
       } catch (err) {
         console.log(err);
       }
+    },
+    async addNewRecipe({commit, rootState}, payload) {
+      console.log(payload);
+      const newData = {
+        ...payload,
+        username: rootState.auth.userLogin.username,
+        createdAt: Date.now(),
+        userId: rootState.auth.userLogin.userId,
+      };
+      try {
+        const {data} = await axios.post(`https://tasty-recipe-e679a-default-rtdb.firebaseio.com/recipe.json?auth=${rootState.auth.token}`, newData)
+        sessionStorage.clear();
+        commit('setNewRecipe', {id: data.name, ...newData});
+      } catch (err) {
+        console.log(err);
+      };
     }
   }
 }
