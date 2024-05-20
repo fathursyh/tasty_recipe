@@ -34,7 +34,7 @@
 <script setup>
 
   defineProps({
-    recipes: Array
+    recipes: [Array, Object]
   })
 
 </script>

@@ -1,7 +1,7 @@
 <template>
-    <select name="" class="form-select" :id="id"
-    @input="$emit('update:modalValue', $event.target.value)">
-    <option v-for="(item, index) in data" :key="index" :value="item" :selected="modelValue === item">
+    <select name="category" class="form-select" :id="id"
+    @input="$emit('update:modelValue', $event.target.value)">
+    <option v-for="(item, index) in data" :key="index" :value="item">
         {{ item }}
     </option>
     </select>
