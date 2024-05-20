@@ -23,7 +23,7 @@
             placeholder="Your email address"
           />
           <button type="button" class="btn btn-signup rounded-pill mt-4">
-            <router-link to="/new-recipe">
+            <router-link to="/signup" class="text-decoration-none text-light">
               Sign Up
             </router-link>
           </button>

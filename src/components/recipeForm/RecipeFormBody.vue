@@ -36,7 +36,7 @@
             <!-- Recipe Cateogry Start -->
             <div class="mb-3"> <base-select
                 :data="['Breakfast', 'Lunch', 'Dinner', 'Meals', 'Snacks']"
-                id="recipeCateogry"
+                id="recipeCategory"
                 v-model="recipeData.category"
                 ></base-select> </div>
             <!-- Recipe Category End -->
@@ -239,6 +239,6 @@ const checkImage = (e) => {
   const router = useRouter();
   const addNewRecipe = async () => {
     await store.dispatch('recipe/addNewRecipe', recipeData);
-    router.push('/user/user-recipe');
+    router.push('/');
   };
 </script>
