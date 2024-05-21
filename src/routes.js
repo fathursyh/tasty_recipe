@@ -4,6 +4,7 @@ import SignupPage from './components/pages/SignupPage.vue';
 import DetailPage from './components/pages/DetailPage.vue';
 import UserPage from './components/pages/UserPage.vue';
 import NewRecipePage from './components/pages/NewRecipePage.vue';
+import EditRecipePage from './components/pages/EditRecipePage.vue';
 import { store } from './store/index';
 import Cookies from "js-cookie";
 
@@ -21,6 +22,9 @@ export const routes = [
   {path: '/new-recipe', name: 'newRecipePage', component: NewRecipePage, beforeEnter: (to, from, next) => {
     checkAuth() ? next() : next({name:'login'});
   }},
+  {path: '/recipe/edit/:id', name: 'editRecipePage', component: EditRecipePage, beforeEnter: (to, from, next) => {
+    checkAuth() ? next() : next({name:'login'});
+  } }
 ];
 const checkAuth = () => {
   const jwtCookie = Cookies.get('jwt');

@@ -15,7 +15,9 @@
           </div>
         </div>
         <div class="d-flex justify-content-between mt-3 pt-3 border-top">
-          <button class="btn delete-btn px-3 py-2 rounded-pill">{{ buttonName[0] }}</button>
+          <button class="btn delete-btn px-3 py-2 rounded-pill"
+          @click="$emit('btnRemove')"
+          >{{ buttonName[0] }}</button>
           <button class="btn edit-btn px-3 py-2 rounded-pill">{{ buttonName[1] }}</button>
         </div>
       </div>

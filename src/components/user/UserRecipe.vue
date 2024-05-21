@@ -19,9 +19,10 @@
       <p class="mt-2 mb-4 fs-5 fw-semibold">Recipe</p>
       <div class="row">
         <user-recipe-card
-          v-for="recipe in recipes" :key="recipe.id"
+          v-for="recipe in recipes" :key="recipe[1].id"
           :recipe="recipe[1]"
           :buttonName="['Delete', 'Edit']"
+          @btnRemove="deleteRecipe(recipe[1].id)"
         >
         <p>{{ new Date(recipe[1].createdAt).toDateString() }}</p>
       </user-recipe-card>
@@ -41,8 +42,12 @@
     const allRecipe = store.state.recipe.recipes;
     const userId = store.state.auth.userLogin.userId;
     const userRecipe = Object.entries(allRecipe)
-    return userRecipe.filter((recipe)=>
+    return userRecipe.filter((recipe) => recipe[1] !== null).filter((recipe)=>
       recipe[1].userId === userId
     );
   });
+
+  const deleteRecipe = async(id) => {
+    await store.dispatch('recipe/deleteRecipe', id);
+  };
 </script>

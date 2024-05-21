@@ -16,9 +16,6 @@ export default {
     setRecipeDetail(state, payload) {
       state.recipeDetail = payload
     },
-    setNewRecipe(state, payload) {
-      state.recipes = payload;
-    },
   },
   actions: {
     async getRecipeData({ commit }) {
@@ -33,38 +30,44 @@ export default {
     },
     async getRecipeDetail({ commit }, payload) {
       try {
-        if (sessionStorage['recipes']) {
-          const getRecipeFromSession = sessionStorage.getItem('recipes');
-          const recipe = JSON.parse(getRecipeFromSession);
-          commit('setRecipeDetail', recipe[payload - 1])
-        } else if (sessionStorage['recipe']) {
-          const getRecipeFromSession = sessionStorage.getItem('recipe');
-          const recipe = JSON.parse(getRecipeFromSession);
-          commit('setRecipeDetail', recipe)
-        } else {
           const { data } = await axios.get(
             `https://tasty-recipe-e679a-default-rtdb.firebaseio.com/recipe/${payload - 1}.json`
           );
           sessionStorage.setItem('recipe', JSON.stringify(data));
           commit('setRecipeDetail', data);
-        }
+        
       } catch (err) {
         console.log(err);
       }
     },
-    async addNewRecipe({ commit, rootState }, payload) {
+    async addNewRecipe({ rootState, dispatch, state }, payload) {
+      await dispatch('getRecipeData')
+      let objectId = 0
+      if(state.recipes) {
+        objectId = Object.entries(state.recipes).length;
+      }
+      const id = objectId + 1;
       const newData = {
         ...payload,
         username: rootState.auth.userLogin.username,
+        id: id,
         createdAt: Date.now(),
         userId: rootState.auth.userLogin.userId,
       };
       try {
-        const { data } = await axios.post(`https://tasty-recipe-e679a-default-rtdb.firebaseio.com/recipe.json?auth=${rootState.auth.token}`, newData)
-        commit('setNewRecipe', { id: data.name, ...newData });
+        const { data } = await axios.put(`https://tasty-recipe-e679a-default-rtdb.firebaseio.com/recipe/${objectId}.json?auth=${rootState.auth.token}`, newData)
+        await dispatch('getRecipeData');
       } catch (err) {
         console.log(err);
       };
-    }
+    },
+    async deleteRecipe({ rootState, dispatch}, payload) {
+      try {
+        const { data } = await axios.delete(`https://tasty-recipe-e679a-default-rtdb.firebaseio.com/recipe/${payload-1}.json?auth=${rootState.auth.token}`);
+        await dispatch('getRecipeData')
+      } catch (err) {
+        console.log(err);
+      }
+    },
   }
 }

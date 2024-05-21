@@ -185,7 +185,7 @@ import BaseTextArea from '../ui/BaseTextArea.vue'
 import BaseSelect from '../ui/BaseSelect.vue'
 import BaseInput from '../ui/BaseInput.vue'
 import BaseButton from '../ui/BaseButton.vue'
-import { reactive, ref } from 'vue';
+import { onMounted, reactive, ref } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
     
@@ -237,8 +237,21 @@ const checkImage = (e) => {
 
   const store = useStore();
   const router = useRouter();
+
   const addNewRecipe = async () => {
     await store.dispatch('recipe/addNewRecipe', recipeData);
-    router.push('/');
+    router.push('/user/user-recipe');
   };
+
+  const props = defineProps({
+    isEdit: {type: Boolean, default: false},
+  })
+
+  onMounted(()=>{
+    if(props.isEdit) {
+      recipeData = store.state.recipe.recipeDetail;
+      ingredientCount = recipeData.ingredients.length;
+      directionCount = recipeData.directions.length;
+    }
+  })
 </script>
