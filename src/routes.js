@@ -22,7 +22,7 @@ export const routes = [
   {path: '/new-recipe', name: 'newRecipePage', component: NewRecipePage, beforeEnter: (to, from, next) => {
     checkAuth() ? next() : next({name:'login'});
   }},
-  {path: '/recipe/edit/:id', name: 'editRecipePage', component: EditRecipePage, beforeEnter: (to, from, next) => {
+  {path: '/edit/:id', name: 'editRecipePage', component: EditRecipePage, beforeEnter: (to, from, next) => {
     checkAuth() ? next() : next({name:'login'});
   } }
 ];

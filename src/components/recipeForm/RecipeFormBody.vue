@@ -11,7 +11,11 @@
                 id="recipeImage"
                 label="Photo Recipe"
                 @input="checkImage"
-                ></base-input> </div>
+                ></base-input>
+                <div>
+                  <img :src="recipeData.imageLink" :alt="recipeData.name" class="image">
+                </div>
+              </div>
             <!-- Image End -->
   
             <!-- Recipe Title Start -->
@@ -188,6 +192,7 @@ import BaseButton from '../ui/BaseButton.vue'
 import { onMounted, reactive, ref } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
+import recipe from '@/store/recipe';
     
 const recipeData = reactive({
   imageLink: '',
@@ -249,9 +254,9 @@ const checkImage = (e) => {
 
   onMounted(()=>{
     if(props.isEdit) {
-      recipeData = store.state.recipe.recipeDetail;
-      ingredientCount = recipeData.ingredients.length;
-      directionCount = recipeData.directions.length;
+      recipeData.value = store.state.recipe.recipeDetail;
+      ingredientCount.value = recipeData.ingredients.length;
+      directionCount.value = recipeData.directions.length;
     }
   })
 </script>

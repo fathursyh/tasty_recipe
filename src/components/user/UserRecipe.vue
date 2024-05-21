@@ -23,6 +23,7 @@
           :recipe="recipe[1]"
           :buttonName="['Delete', 'Edit']"
           @btnRemove="deleteRecipe(recipe[1].id)"
+          @btnEdit="editRecipe(recipe[1].id)"
         >
         <p>{{ new Date(recipe[1].createdAt).toDateString() }}</p>
       </user-recipe-card>
@@ -35,9 +36,10 @@
   import { computed } from 'vue';
   import { useStore } from 'vuex';
   import UserRecipeCard from './UserRecipeCard.vue'
+import { useRouter } from 'vue-router';
 
   const store = useStore();
-
+  const router = useRouter()
   const recipes = computed(() => {
     const allRecipe = store.state.recipe.recipes;
     const userId = store.state.auth.userLogin.userId;
@@ -50,4 +52,8 @@
   const deleteRecipe = async(id) => {
     await store.dispatch('recipe/deleteRecipe', id);
   };
+
+  const editRecipe = (id) => {
+    router.push(`/edit/${id}`)
+  }
 </script>
