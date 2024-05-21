@@ -2,7 +2,7 @@
   <main>
     <div class="container-md my-5 py-5">
       <recipe-form
-        v-if="detailData && !isLoading" :isEdit="true"
+        v-if="!isLoading && detailData" :isEdit="true"
       ></recipe-form>
     </div>
   </main>
@@ -24,7 +24,7 @@ import RecipeForm from '../recipeForm/RecipeForm.vue'
   onMounted(async()=>{
     isLoading.value = true;
     await store.dispatch('recipe/getRecipeDetail', route.params.id )
-  })
     detailData.value = store.state.recipe.recipeDetail;
     isLoading.value = false
+  })
 </script>

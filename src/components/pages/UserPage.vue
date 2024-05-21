@@ -15,8 +15,10 @@
   import PersonalInfo from '../user/PersonalInfo.vue'
   import UserRecipe from '../user/UserRecipe.vue'
   import { useRoute } from 'vue-router'
-  import { computed } from 'vue'
+  import { computed, onActivated, onBeforeMount, onMounted, onUpdated } from 'vue'
+  import { useStore } from 'vuex'
 
+  const store = useStore()
   const route = useRoute();
   const component = {
     'personal-info': PersonalInfo,
@@ -27,6 +29,7 @@
   const getRoute = computed(()=>{
     return route.params.component
   });
+
   
   
 </script>

@@ -7,7 +7,7 @@
         </label>
         <input :type="type" :id="id" :placeholder="placeholder" :readonly="readonly === '1'" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" @keyup="$emit('keyInput', $event.target.value)" 
         @focus="$emit('totalTimeFocus', $event.target.value)"
-        :class="[{'d-none': isImage}, 'form-control', {'file-input': type == file}]" 
+        :class="[{'d-none': isImage}, 'form-control', {'file-input': type == 'file'}]" 
         />
     </div>
 </template>
@@ -26,7 +26,7 @@
         transition: all 1s ease;
     }
     .input-wrapper:hover {
-        background-color: #b9bec3;
+        background-color: #5382b1;
     }
 
     .file-input {
@@ -48,7 +48,7 @@ import { readonly } from 'vue';
         label: {type: String, required: true},
         id: {type: String, required: true},
         placeholder: {type: String, required: false},
-        modelValue: {type: [String, Number], required: false},
+        modelValue: {type: [String, Number, File], required: false},
         readonly: {type: String, required: false, default: '0'},
         isImage: {type: Boolean, required: false}
     })
