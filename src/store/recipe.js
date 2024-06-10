@@ -24,6 +24,7 @@ export default {
           'https://tasty-recipe-e679a-default-rtdb.firebaseio.com/recipe.json'
         )
         commit('setRecipeData', data);
+        console.log(data);
       } catch (err) {
         console.log(err);
       }
@@ -34,6 +35,7 @@ export default {
             `https://tasty-recipe-e679a-default-rtdb.firebaseio.com/recipe/${payload - 1}.json`
           );
           commit('setRecipeDetail', data);
+          console.log(data);
         
       } catch (err) {
         console.log(err);
