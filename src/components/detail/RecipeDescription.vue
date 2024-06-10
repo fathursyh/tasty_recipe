@@ -61,8 +61,9 @@
     const recipeDetail = computed(() => {
         return store.state.recipe.recipeDetail
     });
-    console.log('detail resep : ' + recipeDetail);
-    
+    recipeDetail.forEach((element)=>{
+      console.log(element);
+    })
     const recipe = reactive(recipeDetail)
 
 </script>
