@@ -33,7 +33,6 @@ export default {
           const { data } = await axios.get(
             `https://tasty-recipe-e679a-default-rtdb.firebaseio.com/recipe/${payload - 1}.json`
           );
-          sessionStorage.setItem('recipe', JSON.stringify(data));
           commit('setRecipeDetail', data);
         
       } catch (err) {
