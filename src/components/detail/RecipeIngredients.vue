@@ -22,4 +22,5 @@
     const recipeDetail = computed(() => {
         return store.state.recipe.recipeDetail
     });
+    
 </script>
